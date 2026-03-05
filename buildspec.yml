@@ -7,10 +7,8 @@ phases:
       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 276739241091.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
-    - echo Build Docker image...
       - docker build -t java-demoapp . 
       - docker tag java-demoapp:latest 276739241091.dkr.ecr.us-east-2.amazonaws.com/java-demoapp:latest
   post_build:
     commands:
-      - echo Push Docker image to ECR...
       - docker push 276739241091.dkr.ecr.us-east-2.amazonaws.com/java-demoapp:latest
